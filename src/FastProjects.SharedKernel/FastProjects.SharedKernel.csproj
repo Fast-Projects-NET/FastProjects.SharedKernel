@@ -3,6 +3,26 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <PackageId>FastProjects.SharedKernel</PackageId>
+        <PackageVersion>1.0.7</PackageVersion>
+        <Authors>George Park</Authors>
+
+        <Title>FastProjects.SharedKernel</Title>
+        <Description></Description>
+
+        <PackageProjectUrl>https://github.com/Fast-Projects-NET/FastProjects.SharedKernel</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Fast-Projects-NET/FastProjects.SharedKernel</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageTags>FastProjects</PackageTags>
+        
+        <PackageIcon>logo-icon.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+
+        <ReleaseNotes>
+            * Initial release
+        </ReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
@@ -11,6 +31,17 @@
       <PackageReference Include="MediatR" />
       <PackageReference Include="Newtonsoft.Json" />
       <PackageReference Include="Serilog" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="logo-icon.png">
+        <Pack>True</Pack>
+        <PackagePath>/</PackagePath>
+      </None>
+      <None Update="README.md">
+        <Pack>True</Pack>
+        <PackagePath>/</PackagePath>
+      </None>
     </ItemGroup>
 
 </Project>

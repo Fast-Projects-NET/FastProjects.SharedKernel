@@ -1,5 +1,6 @@
 # To configure the workflow:
 # - Add a NuGet API key to your repository secrets with the name `NUGET_API_KEY`
+# - Uncomment the steps in the `build`, `pack` and `publish` jobs
 
 name: 🚀 Publish NuGet Package
 
@@ -11,8 +12,9 @@ on:
 
 env:
   DOTNET_VERSION: "8.0.x"
-  NUGET_VERSION: "5.x"
-  NUSPEC_FILE: "./FastProjects.SharedKernel.nuspec"
+  PACKAGE_PATH: "./src/FastProjects.SharedKernel/FastProjects.SharedKernel.csproj"
+  README_PATH: "./README.md"
+  ICON_LOGO_PATH: "./docs/assets/icon-logo.png"
 
 jobs:
   build:
@@ -25,6 +27,9 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
+      
+      - name: Copy logo and README files to project directory
+        run: cp ${{ env.README_PATH }} ${{ env.PACKAGE_PATH }} && cp ${{ env.ICON_LOGO_PATH }} ${{ env.PACKAGE_PATH }}
 
       - name: Restore
         run: dotnet restore
@@ -45,19 +50,20 @@ jobs:
     needs: build
 
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
 
-      - uses: actions/checkout@v4
-
-      - uses: nuget/setup-nuget@v2
-        with:
-          nuget-version: ${{ env.NUGET_VERSION }}
-
-      - name: Pack the NuGet package with nuspec
-        run: nuget pack ${{ env.NUSPEC_FILE }} -NoDefaultExcludes
+      - name: Pack the NuGet package
+        run: dotnet pack ${{ env.PACKAGE_PATH }} --configuration Release --no-restore --output ./nupkg
 
       - name: Upload NuGet packages
         uses: actions/upload-artifact@v4
@@ -70,14 +76,15 @@ jobs:
     needs: pack
 
     steps:
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
       - name: Download NuGet packages
         uses: actions/download-artifact@v4
         with:
           name: nuget-packages
 
-      - uses: nuget/setup-nuget@v2
-        with:
-          nuget-version: ${{ env.NUGET_VERSION }}
-
       - name: Publish to NuGet
-        run: nuget push *.nupkg -src https://api.nuget.org/v3/index.json ${{ secrets.NUGET_API_KEY }} -SkipDuplicate
+        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
