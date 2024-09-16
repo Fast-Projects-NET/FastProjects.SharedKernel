@@ -1,7 +1,3 @@
-<div align="center">
-  <img src="docs/assets/logo.png" alt="Project Logo" width="800"/>
-</div>
-
 # 🚀 **FastProjects.SharedKernel**
 
 ![Build Status](https://github.com/Fast-Projects-NET/FastProjects.SharedKernel/actions/workflows/test.yml/badge.svg)

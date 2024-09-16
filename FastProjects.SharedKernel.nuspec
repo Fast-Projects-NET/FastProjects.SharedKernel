@@ -3,7 +3,7 @@
     <metadata>
         <id>FastProjects.SharedKernel</id>
         <title>FastProjects.SharedKernel</title>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
         <authors>George Park</authors>
         <description>
             Some useful base classes that are used in Clean Architecture templates
