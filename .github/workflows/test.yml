@@ -1,4 +1,4 @@
-# To configure the workflow, setup the following:
+# To configure the workflow:
 # - Replace {SOLUTION_PATH} with the name of the solution file in `env` section
 
 name: Build and Test
@@ -18,7 +18,7 @@ on:
 
 env:
   DOTNET_VERSION: "8.0.x"
-  SOLUTION_PATH: "./{SOLUTION_PATH}.sln"
+  SOLUTION_PATH: "./FastProjects.SharedKernel.sln"
 
 jobs:
   build:

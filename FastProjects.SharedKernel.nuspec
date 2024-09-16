@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>FastProjects.SharedKernel</id>
+        <title>FastProjects.SharedKernel</title>
+        <version>1.0.4</version>
+        <authors>George Park</authors>
+        <description>
+            Some useful base classes that are used in Clean Architecture templates
+        </description>
+        <language>en-US</language>
+        <license type="expression">MIT</license>
+        <projectUrl>https://github.com/Fast-Projects-NET/FastProjects.SharedKernel</projectUrl>
+        <releaseNotes>
+            * Initial Release
+        </releaseNotes>
+        <packageTypes>
+            <packageType name="Dependency" />
+        </packageTypes>
+        <tags>FastProjects</tags>
+        <icon>./docs/assets/logo-icon.png</icon>
+        <readme>README.md</readme>
+    </metadata>
+    <files>
+        <file src=".\**" target="content" exclude="**\bin\**;**\obj\**;**\.git\**;**\.github\**;**\*.user;**\.vs\**;**\.vscode\**;**\.gitignore;**\sample\**" />
+        <file src="README.md" />
+    </files>
+</package>
