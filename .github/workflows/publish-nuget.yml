@@ -12,7 +12,7 @@ on:
 
 env:
   DOTNET_VERSION: "8.0.x"
-  NUSPEC_FILE: "./src/FastProjects.SharedKernel/FastProjects.SharedKernel.nuspec"
+  NUSPEC_FILE: "./FastProjects.SharedKernel.nuspec"
 
 jobs:
   build:
