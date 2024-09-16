@@ -17,7 +17,7 @@ env:
   ICON_LOGO_PATH: "./docs/assets/logo-icon.png"
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,54 +39,8 @@ jobs:
       - name: Build
         run: dotnet build ${{ env.PACKAGE_PATH }} --configuration Release --no-restore
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifacts
-          path: |
-            **/bin/Release/*
-            **/obj/Release/*
-
-  pack:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-
       - name: Pack the NuGet package
         run: dotnet pack ${{ env.PACKAGE_PATH }} --configuration Release --no-restore --output ./nupkg
-
-      - name: Upload NuGet packages
-        uses: actions/upload-artifact@v4
-        with:
-          name: nuget-packages
-          path: ./*.nupkg
-
-  publish:
-    runs-on: ubuntu-latest
-    needs: pack
-
-    steps:
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-
-      - name: Download NuGet packages
-        uses: actions/download-artifact@v4
-        with:
-          name: nuget-packages
-
+      
       - name: Publish to NuGet
         run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
