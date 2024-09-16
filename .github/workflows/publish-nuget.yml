@@ -14,7 +14,7 @@ env:
   DOTNET_VERSION: "8.0.x"
   PACKAGE_PATH: "./src/FastProjects.SharedKernel/FastProjects.SharedKernel.csproj"
   README_PATH: "./README.md"
-  ICON_LOGO_PATH: "./docs/assets/icon-logo.png"
+  ICON_LOGO_PATH: "./docs/assets/logo-icon.png"
 
 jobs:
   build:
