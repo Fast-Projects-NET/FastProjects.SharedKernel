@@ -12,7 +12,7 @@ on:
 
 env:
   DOTNET_VERSION: "8.0.x"
-  PACKAGE_PATH: "./src/FastProjects.SharedKernel/FastProjects.SharedKernel.csproj"
+  PACKAGE_PATH: "./src/FastProjects.SharedKernel"
   README_PATH: "./README.md"
   ICON_LOGO_PATH: "./docs/assets/logo-icon.png"
 
@@ -30,8 +30,8 @@ jobs:
       
       - name: Copy logo and README files to project directory
         run: |
-          cp ${{ env.README_PATH }} $(dirname ${{ env.PACKAGE_PATH }}) && \
-          cp ${{ env.ICON_LOGO_PATH }} $(dirname ${{ env.PACKAGE_PATH }})
+          cp ${{ env.README_PATH }} ${{ env.PACKAGE_PATH }} && \
+          cp ${{ env.ICON_LOGO_PATH }} ${{ env.PACKAGE_PATH }}
 
       - name: Restore
         run: dotnet restore ${{ env.PACKAGE_PATH }}
