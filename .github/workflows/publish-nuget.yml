@@ -29,7 +29,9 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
       
       - name: Copy logo and README files to project directory
-        run: cp ${{ env.README_PATH }} ${{ env.PACKAGE_PATH }} && cp ${{ env.ICON_LOGO_PATH }} ${{ env.PACKAGE_PATH }}
+        run: |
+          cp ${{ env.README_PATH }} $(dirname ${{ env.PACKAGE_PATH }}) && \
+          cp ${{ env.ICON_LOGO_PATH }} $(dirname ${{ env.PACKAGE_PATH }})
 
       - name: Restore
         run: dotnet restore
