@@ -11,6 +11,7 @@ on:
 
 env:
   DOTNET_VERSION: "8.0.x"
+  NUGET_VERSION: "5.x"
   NUSPEC_FILE: "./FastProjects.SharedKernel.nuspec"
 
 jobs:
@@ -53,7 +54,7 @@ jobs:
 
       - uses: nuget/setup-nuget@v2
         with:
-          nuget-version: '5.x'
+          nuget-version: ${{ env.NUGET_VERSION }}
 
       - name: Pack the NuGet package with nuspec
         run: nuget pack ${{ env.NUSPEC_FILE }} -NoDefaultExcludes
@@ -76,7 +77,7 @@ jobs:
 
       - uses: nuget/setup-nuget@v2
         with:
-          nuget-version: '5.x'
+          nuget-version: ${{ env.NUGET_VERSION }}
 
       - name: Publish to NuGet
         run: nuget push *.nupkg -src https://api.nuget.org/v3/index.json ${{ secrets.NUGET_API_KEY }}
