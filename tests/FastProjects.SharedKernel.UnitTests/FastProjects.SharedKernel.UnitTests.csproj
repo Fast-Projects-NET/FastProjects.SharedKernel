@@ -23,6 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\src\FastProjects.SharedKernel\FastProjects.SharedKermel.csproj" />
       <ProjectReference Include="..\..\src\FastProjects.SharedKernel\FastProjects.SharedKernel.csproj" />
     </ItemGroup>
 
