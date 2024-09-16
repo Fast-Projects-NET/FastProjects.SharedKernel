@@ -45,25 +45,26 @@ jobs:
     needs: build
 
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
 
-      - uses: actions/checkout@v4
-
-      - uses: nuget/setup-nuget@v2
-        with:
-          nuget-version: ${{ env.NUGET_VERSION }}
-
       - name: Pack the NuGet package with nuspec
-        run: nuget pack ${{ env.NUSPEC_FILE }} -NoDefaultExcludes
+        run: dotnet pack ${{ env.NUSPEC_FILE }} --configuration Release --output ./nupkgs --no-restore
 
       - name: Upload NuGet packages
         uses: actions/upload-artifact@v4
         with:
           name: nuget-packages
-          path: ./*.nupkg
+          path: ./nupkgs/*.nupkg
 
   publish:
     runs-on: ubuntu-latest
@@ -80,4 +81,4 @@ jobs:
           nuget-version: ${{ env.NUGET_VERSION }}
 
       - name: Publish to NuGet
-        run: nuget push *.nupkg -src https://api.nuget.org/v3/index.json ${{ secrets.NUGET_API_KEY }}
+        run: nuget push ./nupkgs/*.nupkg -src https://api.nuget.org/v3/index.json ${{ secrets.NUGET_API_KEY }}

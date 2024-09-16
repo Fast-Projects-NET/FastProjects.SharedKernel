@@ -3,7 +3,7 @@
     <metadata>
         <id>FastProjects.SharedKernel</id>
         <title>FastProjects.SharedKernel</title>
-        <version>1.0.5</version>
+        <version>1.0.6</version>
         <authors>George Park</authors>
         <description>
             Some useful base classes that are used in Clean Architecture templates
@@ -22,6 +22,7 @@
         <readme>README.md</readme>
     </metadata>
     <files>
+        <file src="bin/Release/net8.0/*.dll" target="lib/net8.0" />
         <file src="README.md" />
         <file src="docs/assets/logo-icon.png" />
     </files>
