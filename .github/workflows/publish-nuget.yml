@@ -1,5 +1,4 @@
 # To configure the workflow:
-# - Replace {PACKAGE_PATH} with the name of the package file in `env` section
 # - Add a NuGet API key to your repository secrets with the name `NUGET_API_KEY`
 
 name: 🚀 Publish NuGet Package
@@ -49,6 +48,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
+
+      - uses: actions/checkout@v4
 
       - uses: nuget/setup-nuget@v1
         with:
