@@ -4,10 +4,10 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>FastProjects.SharedKernel</PackageId>
-        <PackageVersion>1.0.7</PackageVersion>
+        <PackageVersion>1.0.7.1</PackageVersion>
         <Authors>George Park</Authors>
         <Title>FastProjects.SharedKernel</Title>
-        <Description></Description>
+        <Description>useful base classes that are used in Clean Architecture templates with DDD</Description>
         <PackageProjectUrl>https://github.com/Fast-Projects-NET/FastProjects.SharedKernel</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Fast-Projects-NET/FastProjects.SharedKernel</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
